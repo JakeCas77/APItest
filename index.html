@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OTT Details API Test</title>
+  <style>
+    /* CSS styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      overflow: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>OTT Details API Test</h1>
+  <button id="fetchButton">Fetch Data</button>
+  <pre id="resultContainer"></pre>
+
+  <script>
+    // JavaScript code
+    const url = 'https://ott-details.p.rapidapi.com/advancedsearch?start_year=1970&end_year=2020&min_imdb=6&max_imdb=7.8&genre=action&language=english&type=movie&sort=latest&page=1';
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': 'c8c15d7f85msh8ca4961666f7d59p1b428ajsn0b843828017c',
+        'X-RapidAPI-Host': 'ott-details.p.rapidapi.com'
+      }
+    };
+
+    const fetchButton = document.getElementById('fetchButton');
+    const resultContainer = document.getElementById('resultContainer');
+
+    fetchButton.addEventListener('click', fetchData);
+
+    async function fetchData() {
+      try {
+        const response = await fetch(url, options);
+        const result = await response.text();
+        resultContainer.textContent = result;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  </script>
+</body>
+</html>
